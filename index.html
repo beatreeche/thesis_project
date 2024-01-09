@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />      
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> <!--animazione-->
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    <link rel="stylesheet" type="text/css" href="./src/style.css">    
+  </head>
+  <body> 
+    <div class="container">
+      <div id="scanning-overlay" class="hidden">
+        <div class="inner">
+          <img src="./scan/image.png">
+          <div class="scanline"></div>
+        </div>
+      </div>
+        
+      <a-scene mindar-image="uiScanning: #scanning-overlay; imageTargetSrc: targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-assets>
+          <img id="icon-logo" src="./icons/logo.png"/>          
+          <img id="icon-facebook" src="./icons/facebook.png"/>
+          <img id="icon-instagram" src="./icons/instagram.png"/>
+          <img id="icon-youtube" src="./icons/youtube.png"/>          
+          <img id="icon-email" src="./icons/email.png"/>
+          <img id="icon-left" src="./icons/left.png"/>
+          <img id="icon-right" src="./icons/right.png"/>
+          <img id="photo1" src="./portfolio/photo1.png"/>  
+          <img id="photo2" src="./portfolio/photo2.png"/> 
+          <img id="photo3" src="./portfolio/photo3.png"/>        
+          <a-asset-item id="avatarModel" src="./model/Guitar_Playing.glb"></a-asset-item>
+          <audio id="riff" src="./sounds/riff.mp3"></audio>
+        </a-assets>
+
+        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+        
+        <a-entity sound="src: #riff"></a-entity>
+        <a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
+          
+          <a-entity visible="false" id="portfolio-panel" position="">
+            <a-image src="#icon-logo" alpha-test="0.5" position="0 0.5 0" height="0.2" width="0.6">
+            </a-image>            
+
+            <a-entity id="portfolio-item0" visible="false">
+              <a-image src="#photo1" alpha-test="0.5" position="0 0 0" height="0.8" width="0.8">
+              </a-image>
+            </a-entity>
+            <a-entity id="portfolio-item1" visible="false">
+              <a-image src="#photo2" alpha-test="0.5" position="0 0 0" height="0.8" width="0.8">
+              </a-image>
+            </a-entity>
+            <a-entity id="portfolio-item2" visible="false">
+              <a-image src="#photo3" alpha-test="0.5" position="0 0 0" height="0.8" width="0.8">
+              </a-image>
+            </a-entity>
+
+            <a-image visible="false" id="portfolio-left-button" class="clickable" src="#icon-left" rotation="0 0 20" position="-0.5 0 0" height="0.2" width="0.2"></a-image>
+            <a-image visible="false" id="portfolio-right-button" class="clickable" src="#icon-right" rotation="0 0 -20" position="0.5 0 0" height="0.2" width="0.2"></a-image>
+          </a-entity>                    
+          
+          <a-image visible="false" id="facebook-button" class="clickable" src="#icon-facebook" position="-0.42 -0.5 0" height="0.15" width="0.15"
+            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+          ></a-image>
+
+          <a-image visible="false" id="instagram-button" class="clickable" src="#icon-instagram" position="-0.14 -0.5 0" height="0.15" width="0.15"
+            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+          ></a-image>
+
+          <a-image visible="false" id="youtube-button" class="clickable" src="#icon-youtube" position="0.14 -0.5 0" height="0.15" width="0.15"
+            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+          ></a-image>
+
+          <a-image visible="false" id="email-button" class="clickable" src="#icon-email" position="0.42 -0.5 0" height="0.15" width="0.15"
+            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+          ></a-image>
+
+          <a-gltf-model id="avatar" position="" scale="0.5 0.5 0.5" src="#avatarModel" animation-mixer/>
+          <a-text id="text" value="" color="white" text="align: center"  width="2" position="0 -0.7 0" geometry="primitive:plane; height: 0.1; width: 2;" material="opacity: 0"></a-text>
+        </a-entity>
+      </a-scene>
+      
+      <script type="module" src="/main.js"></script>
+    </div>    
+  </body>
+</html>
