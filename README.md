@@ -1,0 +1,1 @@
+Raccolta dei materiali per la progettazione e lo sviluppo di una web app per la visualizzazione 3D di un biglietto da visita (a tema musicale) interattivo in realtà aumentata tramite tracking in un'immagine. 
